@@ -1,0 +1,123 @@
+CSS
+
+/* 1. VARIÁVEIS DO DESIGN SYSTEM */
+:root {
+    /* Cores */
+    --primary: #2d6a4f;
+    --secondary: #95d5b2;
+    --accent: #d8f3dc;
+    --text: #1b4332;
+    --bg-light: #ffffff;
+    --bg-dark: #081c15;
+    
+    /* Espaçamentos e Bordas */
+    --padding-std: 1.5rem;
+    --radius: 12px;
+    --transition: all 0.4s ease-out;
+
+    /* Tipografia Base */
+    --base-font-size: 100%; /* 16px */
+}
+
+/* 2. MODO ALTO CONTRASTE */
+body.high-contrast {
+    --primary: #ffff00;
+    --secondary: #000000;
+    --bg-light: #000000;
+    --text: #ffffff;
+    --accent: #ffffff;
+}
+
+/* 3. RESET E LAYOUT BASE (Mobile-First) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-size: var(--base-font-size);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+    transition: background 0.3s;
+}
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+/* 4. GRID E FLEXBOX CONFIGS */
+/* Edite o grid-template-columns abaixo para mudar a quantidade de cards por linha */
+.grid-layout {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: var(--padding-std) 0;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem var(--padding-std);
+    background: var(--primary);
+    color: white;
+}
+
+/* 5. COMPONENTES (Carrossel e Cards) */
+.card {
+    background: var(--accent);
+    padding: 2rem;
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    padding: 20px;
+}
+
+/* 6. ACESSIBILIDADE E ANIMAÇÕES */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Acordeão Estilos */
+.accordion-item { border-bottom: 1px solid var(--primary); }
+.accordion-header {
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: inherit;
+}
+.accordion-content { display: none; padding: 1rem; }
+.accordion-content.show { display: block; }
